@@ -15,14 +15,15 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function transform(arr) {
   if (arr === null){
-    return '\'arr\' parameter must be an instance of the Array!';
+    throw(new Error ('\'arr\' parameter must be an instance of the Array!'));
   };
+
   if (arr.length ===0){
     return [];
   };
   
   if ((typeof arr  !=='object')|| (Object.keys(arr)[0] !== '0')){
-    return '\'arr\' parameter must be an instance of the Array!';
+    throw(new Error('\'arr\' parameter must be an instance of the Array!'));
   };
  
   let arrResult =[];
@@ -54,9 +55,14 @@ function transform(arr) {
           } 
       };
          
-     if (arr[i] === '--double-prev'){
+     if ((arr[i] === '--double-prev')&&(arr[i-2] !=='--double-next' )){
           if (!arrRemoved.includes(i-1)&&(i>0)){
             arrResult.push(arr[i-1]);
+            arrResult.push(arr[i-1]);
+          };
+        };
+        if ((arr[i] === '--double-prev')&&(arr[i-2] ==='--double-next' )){
+          if (!arrRemoved.includes(i-1)&&(i>0)){
             arrResult.push(arr[i-1]);
           };
         };

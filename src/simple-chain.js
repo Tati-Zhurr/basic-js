@@ -17,11 +17,11 @@ const chainMaker = {
   removeLink(position) {
     if (typeof position !== 'number'){
       this.arrResult =[];
-      return 'You can\'t remove incorrect link!';
+      throw(new Error( 'You can\'t remove incorrect link!'));
     };
     if ((position <1)||(position > this.arrResult.length)){
       this.arrResult =[];
-      return 'You can\'t remove incorrect link!';
+      throw(new Error( 'You can\'t remove incorrect link!'));
     };
     delete this.arrResult.splice(position-1,1);
     return chainMaker;

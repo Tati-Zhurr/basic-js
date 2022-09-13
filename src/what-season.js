@@ -14,18 +14,19 @@ const { NotImplementedError } = require('../extensions/index.js');
 function getSeason(date) {
   let dateToCheck = new Date(date);
   if (!date){
-    return 'Unable to determine the time of year!';
+   throw(new Error('Unable to determine the time of year!'));
   };
   
   if (dateToCheck == 'Invalid Date'){
-    return 'Invalid date!';
+    throw(new Error( 'Invalid date!'));
   };
   if (typeof date !== 'object'){
-    return 'Invalid date!';
+    throw(new Error( 'Invalid date!'));
   };
+  
   let month = dateToCheck.getMonth();
   if ((!month)&&(month !==0)){
-    return 'Invalid date!';
+    throw(new Error( 'Invalid date!'));
   };
   if ((month === 11) ||(month === 0)||(month === 1)){
     return 'winter';
