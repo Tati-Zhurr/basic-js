@@ -23,10 +23,86 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/*matrix*/) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let maxCol= matrix[0].length;
+  let maxRow =matrix.length;
+  let matrixResult=[];
+  for (let row=0; row<maxRow; row++){
+    let newRow=[];
+    for (let col=0; col< maxCol; col++){
+      newRow.push(0);
+    }
+    matrixResult.push(newRow);
   }
+  for (let row=0; row< maxRow; row++){
+    for (let col=0; col< maxCol; col++){
+      if (matrix[row][col] === true){
+        if (row === 0){
+          if (col ===0){
+              matrixResult[row][col+1]+=1;
+              matrixResult[row+1][col]+=1;
+              matrixResult[row+1][col+1]+=1;
+             
+          } else  if (col+1 === maxCol){
+              matrixResult[row][col-1]+=1;
+              matrixResult[row+1][col-1]+=1;
+              matrixResult[row+1][col]+=1;
+            } else{
+              matrixResult[row][col-1]+=1;
+              matrixResult[row][col+1]+=1;
+              matrixResult[row+1][col-1]+=1;
+              matrixResult[row+1][col]+=1;
+              matrixResult[row+1][col+1]+=1;
+            }
+          } else if (row+1 === maxRow){
+            if (col ===0){
+              matrixResult[row][col+1]+=1;
+              matrixResult[row-1][col+1]+=1;
+              matrixResult[row-1][col]+=1;
+            } else  if (col+1 === maxCol){
+                matrixResult[row][col-1]+=1;
+                matrixResult[row-1][col]+=1;
+                matrixResult[row][col-1]+=1;
+              } else{
+                matrixResult[row][col-1]+=1;
+                matrixResult[row][col+1]+=1;
+                matrixResult[row-1][col-1]+=1;
+                matrixResult[row-1][col]+=1;
+                matrixResult[row-1][col+1]+=1;
+          }
+         
+        } else{
+          if (col ===0){
+            matrixResult[row][col+1]+=1;
+            matrixResult[row-1][col]+=1;
+            matrixResult[row-1][col+1]+=1;
+            matrixResult[row+1][col]+=1;
+            matrixResult[row+1][col+1]+=1;
+          } else  if (col+1 === maxCol){
+              matrixResult[row][col-1]+=1;
+              matrixResult[row-1][col]+=1;
+              matrixResult[row-1][col-1]+=1;
+              matrixResult[row+1][col]+=1;
+              matrixResult[row+1][col-1]+=1;
+            } else{
+              matrixResult[row][col-1]+=1;
+              matrixResult[row][col+1]+=1;
+              matrixResult[row-1][col]+=1;
+              matrixResult[row-1][col-1]+=1;
+              matrixResult[row-1][col+1]+=1;
+              matrixResult[row+1][col]+=1;
+              matrixResult[row+1][col-1]+=1;
+              matrixResult[row+1][col+1]+=1;
+        }
+
+        }
+
+      }      
+ 
+  }
+}
+  return  matrixResult;
+}
 
 
 module.exports = {
