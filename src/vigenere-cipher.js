@@ -59,6 +59,7 @@ class VigenereCipheringMachine {
  };
    return encoded.join('').toUpperCase();
   }
+  
   decrypt(encryptedMessage, key ) {
     if ((!encryptedMessage)||(!key)){
       throw new Error('Incorrect arguments!');
